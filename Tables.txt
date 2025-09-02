@@ -1,0 +1,6 @@
+Multiplication table of 14 is:
+ [14, 28, 42, 56, 70, 84, 98, 112, 126, 140]
+
+Multiplication table of 11 is:
+ [11, 22, 33, 44, 55, 66, 77, 88, 99, 110]
+

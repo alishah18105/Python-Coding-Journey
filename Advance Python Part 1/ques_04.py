@@ -1,5 +1,10 @@
-#Write a list comprehenion to print a list which contains the multiplication table of a user entered number
+# Write a program to display a/b where a and b are two integers. If b = 0 display infiniteby handling ZeroDivisionError.
 
-num = int(input("Enter a number: "))
-multiplication = [i*num for i in range(1,11)]
-print(multiplication)
+try:
+    a = int(input("Enter first number: "))
+    b = int(input("Enter second number: "))
+    result = a/b
+    print("Result is:", result)
+
+except ZeroDivisionError:
+    print("Infinity")
