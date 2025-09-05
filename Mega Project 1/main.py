@@ -1,8 +1,11 @@
+import requests
 import speech_recognition as sr
 import webbrowser
 import pyttsx3
+from music import musicLibrary
 
 speech_recognizer = sr.Recognizer()
+news_api_key = 'f23cc03a3eb74e469df4ad3e9517af5a'
 
 def speak(text):
     engine = pyttsx3.init()
@@ -25,7 +28,24 @@ def processCommand(c):
     elif "open facebook" in c.lower():
         speak("Opening Facebook")
         webbrowser.open("https://www.facebook.com")
-
+    elif c.lower().startswith("play music"):
+        song_name = c.split("play music",1)[1].strip().lower()
+        if song_name in musicLibrary:
+            link = musicLibrary[song_name]
+            webbrowser.open(link)
+            speak(f"Playing {song_name}")
+        else:
+            speak(f"Sorry, I don't have {song_name} in the music library.")
+    elif "news" in c.lower():
+        speak("Fetching the latest news")
+        news = requests.get(f'https://newsapi.org/v2/top-headlines?country=us&apiKey={news_api_key}')
+        if news.status_code == 200:
+            articles = news.json().get('articles', [])
+            for article in articles:
+                speak(article['title'])
+        else:
+            speak("Sorry, I couldn't fetch the news at the moment.")
+        
 if __name__ == "__main__":
     speak("Hello, how can I assist you today?") 
     while True:
