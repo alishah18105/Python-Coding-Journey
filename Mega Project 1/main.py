@@ -2,6 +2,7 @@ import requests
 import speech_recognition as sr
 import webbrowser
 import pyttsx3
+import google.generativeai as genai
 from music import musicLibrary
 
 speech_recognizer = sr.Recognizer()
@@ -43,8 +44,30 @@ def processCommand(c):
             articles = news.json().get('articles', [])
             for article in articles:
                 speak(article['title'])
-        else:
-            speak("Sorry, I couldn't fetch the news at the moment.")
+    else:
+            genAi(c)
+
+def genAi(command):
+
+    API_KEY = "AIzaSyDtFvOygqfyqcUMEbOov3tsrbxR8o5_1DI"
+
+    genai.configure(api_key=API_KEY)
+
+    try:
+        # Create a model instance
+        model = genai.GenerativeModel("gemini-1.5-flash")
+
+        # Send a test prompt
+        response = model.generate_content(command)
+
+        # Print the output
+        speak(response.text)
+
+    except Exception as e:
+        print("❌ API Key Test Failed")
+        print("Error:", e)
+
+
         
 if __name__ == "__main__":
     speak("Hello, how can I assist you today?") 
