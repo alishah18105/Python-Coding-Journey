@@ -6,7 +6,7 @@ now = datetime.now()
 print("Now:", now)
 
 # Formatting date
-print("Formatted:", now.strftime("%Y-%m-%d "))
+print("Formatted:", now.strftime("%Y-%m-%d %H:%M:%S"))
 
 # Expiry after 7 days
 expiry = now + timedelta(days=7)

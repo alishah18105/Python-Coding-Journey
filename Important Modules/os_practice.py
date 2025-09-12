@@ -1,3 +1,9 @@
+#The os module in Python provides a portable way to interact with the underlying 
+# operating system. This built-in module is essential for performing system-level 
+# tasks, such as managing files and directories, handling environment variables, and
+#  running system commands. The functionality works across different operating 
+# systems, including Windows, macOS, and Linux.
+
 import os
 
 # # Create a new directory
